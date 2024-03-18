@@ -1,0 +1,26 @@
+<body>
+<div class="contenedor">
+  <div id="box">
+  <h1>Cita del dia</h1>
+ <p id="cita"></p>
+</div>
+</div>
+     <script>
+        // Función para obtener una cita célebre de una API pública
+        function obtenerCitaCelebre() {
+            fetch('https://api.quotable.io/random')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('cita').innerText = `"${data.content}" - ${data.author}`;
+                })
+                .catch(error => console.error('Error al obtener la cita:', error));
+        }
+
+        // Establecer un intervalo para ejecutar la función cada 24 horas
+        setInterval(obtenerCitaCelebre, 86400000);
+
+        // Ejecutar la función inmediatamente al cargar el script
+        obtenerCitaCelebre();
+    </script>
+</body>
+</html>
